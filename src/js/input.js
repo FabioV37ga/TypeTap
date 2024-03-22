@@ -13,14 +13,14 @@ class Input {
         Input.adicionar('keydown', function (event) {
             event.key.toString().toLowerCase() == 'w' ?
                 (Input.w != true ?
-                    (Input.w = true) + console.log('w ' + Input.w) :
+                    (Input.w = true) :
                     null) :
                 null
         })
         // W [↑]
         Input.adicionar('keyup', function (event) {
             event.key.toString().toLowerCase() == 'w' ?
-                (Input.w = false) + console.log('w ' + Input.w) :
+                (Input.w = false) :
                 null
         })
 
@@ -28,14 +28,14 @@ class Input {
         Input.adicionar('keydown', function (event) {
             event.key.toString().toLowerCase() == 'a' ?
                 (Input.a != true ?
-                    (Input.a = true) + console.log('a ' + Input.a) :
+                    (Input.a = true) :
                     null) :
                 null
         })
         // A[↑]
         Input.adicionar('keyup', function (event) {
             event.key.toString().toLowerCase() == 'a' ?
-                (Input.a = false) + console.log('a ' + Input.a) :
+                (Input.a = false) :
                 null
         })
 
@@ -43,14 +43,14 @@ class Input {
         Input.adicionar('keydown', function (event) {
             event.key.toString().toLowerCase() == 's' ?
                 (Input.s != true ?
-                    (Input.s = true) + console.log('s ' + Input.s) :
+                    (Input.s = true) :
                     null) :
                 null
         })
         // S[↑]
         Input.adicionar('keyup', function (event) {
             event.key.toString().toLowerCase() == 's' ?
-                (Input.s = false) + console.log('s ' + Input.s) :
+                (Input.s = false) :
                 null
         })
 
@@ -58,14 +58,14 @@ class Input {
         Input.adicionar('keydown', function (event) {
             event.key.toString().toLowerCase() == 'd' ?
                 (Input.d != true ?
-                    (Input.d = true) + console.log('d ' + Input.d) :
+                    (Input.d = true) :
                     null) :
                 null
         })
         // D[↑]
         Input.adicionar('keyup', function (event) {
             event.key.toString().toLowerCase() == 'd' ?
-                (Input.d = false) + console.log('d ' + Input.d) :
+                (Input.d = false) :
                 null
         })
     }
