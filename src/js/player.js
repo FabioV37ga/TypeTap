@@ -90,8 +90,7 @@ class Player {
                 if (Player.posicao[1] - 1 >= level.boundaries[i][0][1] &&
                     Player.posicao[1] <= level.boundaries[i][1][1]) {
                     if (Player.posicao[0] >= level.boundaries[i][0][0] &&
-                        Player.posicao[0] <= level.boundaries[i][1][0]
-                    )
+                        Player.posicao[0] <= level.boundaries[i][1][0])
                         allowY = true;
                 }
             }
