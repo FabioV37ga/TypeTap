@@ -1,0 +1,38 @@
+.square {
+    position: absolute
+}
+
+#square1 {
+    bottom: 0;
+    height: 760px;
+    width: 495px;
+    background: purple;
+    z-index: 1;
+}
+
+#square2 {
+    left: 495px;
+    bottom: 200px;
+    height: 410px;
+    width: calc(810px - 495px);
+    background: purple;
+    z-index: 1;
+}
+
+#square3 {
+    left: 800px;
+    bottom: 0px;
+    height: 360px;
+    width: 240px;
+    background: purple;
+    z-index: 1;
+}
+
+#square4 {
+    left: 800px;
+    bottom: 520px;
+    height: 360px;
+    width: 100%;
+    background: purple;
+    z-index: 1;
+}

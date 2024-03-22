@@ -1,0 +1,93 @@
+
+.---------------------------------------------------------------------------------------------------------------------------------------.
+·																	·
+·  EIXO X, LÓGICA DE MOVIMENTAÇÃO:													·
+·																	·
+·	1.     [A][↓] -------> mover para esquerda											·
+·	1.1.   [A][↓] enquanto [D][↓] --------> parar de mover-se, mover para esquerda							·
+·	1.2    [A][↑] -------> parar de mover, se "![D][↓]"										·
+·	1.3    [A][↑] enquanto [D][↓] ---------> não faz nada										·
+·																	·
+·																	·
+·	ao mesmo passo que:														·
+·																	·
+·																	·
+·	2.     [D][↓] -------> mover para direita 											·
+·	2.1    [D][↓] enquanto [A][↓] --------> parar de mover-se, mover para esquerda							·
+·	2.2    [D][↑] -------> parar de mover, se"![A][↓]"										·
+·	2.3    [D][↑] enquanto [A][↓] ---------> não faz nada										·
+·																	·
+·	...																·
+·																	·
+·	solução 1:															·
+·		O evento keydown ([↓]) das teclas de movimento marcam, sempre que são pressionadas algum atributo como ativo;		·
+·		Enquanto houver algum atributo marcado como ativo, a seguinte função é repetida:					·
+·			Se A[↓] e !B[↓]													·
+·				Mover(Esquerda)												·
+·			Se B[↓] e !A[↓]													·
+·				Mover(Direita)												·
+·			Senão														·
+·				Trava movimentação											·
+·																	·
+·		*- Isso resolve instabilidades na movimentação quando ocorre a troca de direção em um mesmo eixo.			·
+·																	·
+·																	·
+.---------------------------------------------------------------------------------------------------------------------------------------.
+·                                                                     ...								·
+· nota:  é importante que os eixos trabalhem em núcleos diferentes, pois devem funcionar de forma 					·
+·       independente, por isso são separados em 2 métodos diferentes.									·
+.---------------------------------------------------------------------------------------------------------------------------------------.
+·																	·
+·  EIXO Y, LÓGICA DE MOVIMENTAÇÃO:													·
+·																	·
+·																	·
+·	1.     [S][↓] -------> mover para baixo												·
+·	1.1.   [S][↓] enquanto [W][↓] --------> parar de mover-se, mover para cima							·
+·	1.2    [S][↑] -------> parar de mover, se "![W][↓]"										·
+·	1.3    [S][↑] enquanto [W][↓] ---------> não faz nada										·
+·																	·
+·																	·
+·	ao mesmo passo que:														·
+·																	·
+·																	·
+·	2.     [W][↓] -------> mover para cima 												·
+·	2.1    [W][↓] enquanto [S][↓] --------> parar de mover-se, mover para cima							·
+·	2.2    [W][↑] -------> parar de mover, se"![S][↓]"										'
+·	2.3    [W][↑] enquanto [S][↓] ---------> não faz nada										'
+·																	'
+·	...																'
+·																	'
+·	Solução 1:															'
+·		vide solução 1 do eixo X, adaptar p/ eixo Y.										'
+·																	'
+·																	'
+'---------------------------------------------------------------------------------------------------------------------------------------'
+
+var w
+var s
+
+var a
+var d
+
+w,a,s,d (elementos).eventListener keydown ->  w|a|s|d = true;
+w,a,s,d (elementos).eventListener keyup ->  w|a|s|d = false;
+
+while w|a|s|d == true
+	intervalo 1ms p/ execucao
+		movimenta jogador após verificar a qual direção deve ir baseado nas teclas pressionadas.
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
