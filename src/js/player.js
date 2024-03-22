@@ -2,7 +2,7 @@
 class Player {
     static jogador = document.querySelector(".player")
     static posicao = [0, 0]
-    static direcao = [0, 0]
+    static direcao = ['none', 'none']
     static habilitarMovimentacao() {
         Input.bindMovimentacao()
         Player.mover()
@@ -12,43 +12,37 @@ class Player {
         var intervalo = setInterval(() => {
             // Eixo y
             if (Input.w == true && Input.s == false) {
-                // console.log("↑")
-                // Se player.posicao dentro de fase.limitacoes
-                Player.direcao[1] = 1
+                Player.direcao[1] = 'up'
                 if (Player.podeMovimentarY())
                     Player.posicao[1]++
             }
             else if (Input.s == true && Input.w == false) {
-                // console.log("↓")
-                Player.direcao[1] = 2
+                Player.direcao[1] = 'down'
                 if (Player.podeMovimentarY())
                     Player.posicao[1]--
             }
             else {
-                Player.direcao[1] = 0
+                Player.direcao[1] = 'none'
             }
 
             // Eixo X
             if (Input.a == true && Input.d == false) {
-                // console.log("←")
-                Player.direcao[0] = 2
+                Player.direcao[0] = 'left'
                 if (Player.podeMovimentarX())
                     Player.posicao[0]--
             }
             else if (Input.d == true && Input.a == false) {
-                // console.log("→")
-                Player.direcao[0] = 1
+                Player.direcao[0] = 'right'
                 if (Player.podeMovimentarX())
                     Player.posicao[0]++
 
             }
             else {
-                Player.direcao[0] = 0
+                Player.direcao[0] = 'none'
             }
 
             if (Input.w || Input.a || Input.s || Input.d) {
                 Player.atualizarPosicao()
-                // console.log(Player.direcao)
             }
         }, 1);
     }
@@ -56,43 +50,66 @@ class Player {
     static podeMovimentarX() {
         var allowX = false;
         var level = Level.LevelArray[Game.level]
+
+        var direcaoJogadorX = Player.direcao[0];
+        var posicaoJogadorX = Player.posicao[0];
+        var posicaoJogadorY = Player.posicao[1];
+
         for (let i = 0; i <= level.boundaries.length - 1; i++) {
-            if (Player.direcao[0] == 1) {
-                if (Player.posicao[0] + 1 <= level.boundaries[i][1][0] &&
-                    Player.posicao[0] >= level.boundaries[i][0][0]) {
-                    if (Player.posicao[1] >= level.boundaries[i][0][1] &&
-                        Player.posicao[1] <= level.boundaries[i][1][1])
-                        allowX = true;
+
+            var x1 = level.boundaries[i][0][0];
+            var y1 = level.boundaries[i][0][1];
+            var x2 = level.boundaries[i][1][0];
+            var y2 = level.boundaries[i][1][1];
+
+            if (direcaoJogadorX == 'right') {
+                if (posicaoJogadorX + 1 <= x2 &&
+                    posicaoJogadorX >= x1 &&
+                    posicaoJogadorY >= y1 &&
+                    posicaoJogadorY <= y2) {
+                    allowX = true;
                 }
             }
-            else if (Player.direcao[0] == 2)
-                if (Player.posicao[0] - 1 >= level.boundaries[i][0][0] &&
-                    Player.posicao[0] <= level.boundaries[i][1][0]) {
-                    if (Player.posicao[1] >= level.boundaries[i][0][1] &&
-                        Player.posicao[1] <= level.boundaries[i][1][1])
-                        allowX = true;
+            else if (direcaoJogadorX == 'left') {
+                if (posicaoJogadorX - 1 >= x1 &&
+                    posicaoJogadorX <= x2 &&
+                    posicaoJogadorY >= y1 &&
+                    posicaoJogadorY <= y2) {
+                    allowX = true;
                 }
+            }
         }
-        return allowX;
+        return allowX
     }
 
     static podeMovimentarY() {
         var allowY = false;
         var level = Level.LevelArray[Game.level]
+
+        var posicaoJogadorX = Player.posicao[0];
+        var direcaoJogadorY = Player.direcao[1];
+        var posicaoJogadorY = Player.posicao[1];
+
         for (let i = 0; i <= level.boundaries.length - 1; i++) {
-            if (Player.direcao[1] == 1) {
-                if (Player.posicao[1] + 1 <= level.boundaries[i][1][1] &&
-                    Player.posicao[1] >= level.boundaries[i][0][1]) {
-                    if (Player.posicao[0] >= level.boundaries[i][0][0] &&
-                        Player.posicao[0] <= level.boundaries[i][1][0])
-                        allowY = true;
+
+            var x1 = level.boundaries[i][0][0];
+            var y1 = level.boundaries[i][0][1];
+            var x2 = level.boundaries[i][1][0];
+            var y2 = level.boundaries[i][1][1];
+
+            if (direcaoJogadorY == 'up') {
+                if (posicaoJogadorY + 1 <= y2 &&
+                    posicaoJogadorY >= y1 &&
+                    posicaoJogadorX >= x1 &&
+                    posicaoJogadorX <= x2) {
+                    allowY = true;
                 }
-            } else if (Player.direcao[1] == 2) {
-                if (Player.posicao[1] - 1 >= level.boundaries[i][0][1] &&
-                    Player.posicao[1] <= level.boundaries[i][1][1]) {
-                    if (Player.posicao[0] >= level.boundaries[i][0][0] &&
-                        Player.posicao[0] <= level.boundaries[i][1][0])
-                        allowY = true;
+            } else if (direcaoJogadorY == 'down') {
+                if (posicaoJogadorY - 1 >= y1 &&
+                    posicaoJogadorY <= y2 &&
+                    posicaoJogadorX >= x1 &&
+                    posicaoJogadorX <= x2) {
+                    allowY = true;
                 }
             }
         }
