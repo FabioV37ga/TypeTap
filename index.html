@@ -7,20 +7,26 @@
     <title>TypeTap</title>
     <link rel="stylesheet" href="src/css/page.css">
     <link rel="stylesheet" href="src/css/janela.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 
 <body>
     <section class="janela">
-        <button id="botao" onclick="Player.habilitarMovimentacao()">habilitar</button>
+        <span style="margin: 60px; position:absolute; z-index: 1; color:white">
+            *utilize W, A, S, D
+            <br><br>
+            Até agora: <br>
+            <small>1. Criação dinâmica de caminhos andáveis </small> <br>
+            <small>2. Lógica de consistência de movimentação </small> <br>
+            <small>3. Lógica para criação de diferentes níveis </small> <br>
+
+        </span>
         <div class="player" style="bottom:0px;left:0px;">
         </div>
-        <div class="square" id="square1"></div>
-        <div class="square" id="square2"></div>
-        <div class="square" id="square3"></div>
-        <div class="square" id="square4"></div>
     </section>
 </body>
 <script src="src/js/input.js"></script>
+<script src="src/js/boundarie.js"></script>
 <script src="src/js/player.js"></script>
 <script src="src/js/level.js"></script>
 <script src="src/js/game.js"></script>

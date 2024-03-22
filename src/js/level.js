@@ -1,3 +1,5 @@
+Player.habilitarMovimentacao()
+
 class Level {
     static LevelArray = Level.LevelArray ? Level.LevelArray : [];
     id;
@@ -21,4 +23,8 @@ class Level {
     }
 }
 
-var inicio = new Level(0, [[[0, 0], [485, 750]], [[485, 200], [800, 600]], [[800, 0], [1030, 350]], [[800, 520], [1230, 750]]])
+var inicio = new Level(0, [[[0, 0], [485, 750]], [[485, 200], [800, 600]], [[800, 0], [1030, 350]],
+[[485, 70], [800, 145]], [[900, 350], [975, 720]], [[485, 675], [975, 720]]])
+for (let i = 0; i <= inicio.boundaries.length - 1; i++) {
+    var boundarie = new Boundarie(inicio.boundaries[i][0], inicio.boundaries[i][1])
+}

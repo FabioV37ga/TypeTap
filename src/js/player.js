@@ -1,3 +1,4 @@
+
 class Player {
     static jogador = document.querySelector(".player")
     static posicao = [0, 0]
