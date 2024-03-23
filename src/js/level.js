@@ -4,6 +4,7 @@ class Level {
     static LevelArray = Level.LevelArray ? Level.LevelArray : [];
     id;
     boundaries;
+    interactions;
 
     constructor(id, boundaries) {
         this.id = id;
@@ -25,13 +26,12 @@ class Level {
 
 var inicio = new Level(0, [
     //A(x¹,y¹) , B(x²,y²)
-    [[0, 0], [485, 750]],
-    [[485, 200], [800, 600]],
-    [[800, 0], [1030, 350]],
-    [[485, 70], [800, 145]],
-    [[900, 350], [975, 720]],
-    [[485, 675], [975, 720]]
+    [[576, 0], [700, 760]],
+    [[700, 292], [1230, 430]],
+    [[720, 0], [1230, 286]],
+    [[975, 285], [1060, 310]]
 ])
 for (let i = 0; i <= inicio.boundaries.length - 1; i++) {
-    var boundarie = new Boundarie(inicio.boundaries[i][0], inicio.boundaries[i][1])
+    var boundarie = new Boundarie(inicio.boundaries[i][0], inicio.boundaries[i][1], 'path')
 }
+

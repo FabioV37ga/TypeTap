@@ -1,7 +1,7 @@
 
 class Player {
     static jogador = document.querySelector(".player")
-    static posicao = [0, 0]
+    static posicao = [600, 0]
     static direcao = ['none', 'none']
     static habilitarMovimentacao() {
         Input.bindMovimentacao()

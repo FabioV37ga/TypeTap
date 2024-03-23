@@ -1,25 +1,32 @@
-#botao{
+#botao {
     position: absolute;
     z-index: 3;
 }
 
-.janela{
+.janela {
     width: 1240px;
     height: 760px;
-    background: black;
+    background: url(../assets/level_0.png);
     margin: 200px auto;
     position: relative;
     overflow: hidden;
 }
 
-.player{
+.player {
     background: lime;
+
     height: 10px;
     width: 10px;
     position: absolute;
     /* left: calc(50% - 5px);
     bottom: calc(50% - 5px); */
-    left: 0;
+    left: 600px;
     bottom: 0;
     z-index: 2;
+}
+
+.janela span {
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 5px 15px 5px 5px;
+    padding: 10px 15px;
 }
