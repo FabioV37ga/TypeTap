@@ -67,7 +67,7 @@ class Player {
                     posicaoJogadorX >= x1 &&
                     posicaoJogadorY >= y1 &&
                     posicaoJogadorY <= y2) {
-                    allowX = true;
+                    return true
                 }
             }
             else if (direcaoJogadorX == 'left') {
@@ -75,11 +75,10 @@ class Player {
                     posicaoJogadorX <= x2 &&
                     posicaoJogadorY >= y1 &&
                     posicaoJogadorY <= y2) {
-                    allowX = true;
+                    return true
                 }
             }
         }
-        return allowX
     }
 
     static podeMovimentarY() {
@@ -102,18 +101,18 @@ class Player {
                     posicaoJogadorY >= y1 &&
                     posicaoJogadorX >= x1 &&
                     posicaoJogadorX <= x2) {
-                    allowY = true;
+                    return true
                 }
             } else if (direcaoJogadorY == 'down') {
                 if (posicaoJogadorY - 1 >= y1 &&
                     posicaoJogadorY <= y2 &&
                     posicaoJogadorX >= x1 &&
                     posicaoJogadorX <= x2) {
-                    allowY = true;
+                    return true
                 }
             }
         }
-        return allowY
+        
     }
 
     static atualizarPosicao() {
