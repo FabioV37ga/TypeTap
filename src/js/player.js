@@ -3,52 +3,64 @@ class Player {
     static jogador = document.querySelector(".player")
     static posicao = [600, 0]
     static direcao = ['none', 'none']
+    static movimentacao = false;
+
     static habilitarMovimentacao() {
-        Input.bindMovimentacao()
-        Player.mover()
+        Player.mover();
+    }
+
+    static desabilitarMovimentacao() {
+        Player.parar();
     }
 
     static mover() {
+        Player.movimentacao = true;
         var intervalo = setInterval(() => {
-            // Eixo y
-            if (Input.w == true && Input.s == false) {
-                Player.direcao[1] = 'up'
-                if (Player.podeMovimentarY())
-                    Player.posicao[1]++
-            }
-            else if (Input.s == true && Input.w == false) {
-                Player.direcao[1] = 'down'
-                if (Player.podeMovimentarY())
-                    Player.posicao[1]--
-            }
-            else {
-                Player.direcao[1] = 'none'
-            }
+            if (Player.movimentacao == true) {
+                // Eixo y
+                if (Input.w == true && Input.s == false) {
+                    Player.direcao[1] = 'up'
+                    if (Player.podeMovimentarY())
+                        Player.posicao[1]++
+                }
+                else if (Input.s == true && Input.w == false) {
+                    Player.direcao[1] = 'down'
+                    if (Player.podeMovimentarY())
+                        Player.posicao[1]--
+                }
+                else {
+                    Player.direcao[1] = 'none'
+                }
 
-            // Eixo X
-            if (Input.a == true && Input.d == false) {
-                Player.direcao[0] = 'left'
-                if (Player.podeMovimentarX())
-                    Player.posicao[0]--
-            }
-            else if (Input.d == true && Input.a == false) {
-                Player.direcao[0] = 'right'
-                if (Player.podeMovimentarX())
-                    Player.posicao[0]++
+                // Eixo X
+                if (Input.a == true && Input.d == false) {
+                    Player.direcao[0] = 'left'
+                    if (Player.podeMovimentarX())
+                        Player.posicao[0]--
+                }
+                else if (Input.d == true && Input.a == false) {
+                    Player.direcao[0] = 'right'
+                    if (Player.podeMovimentarX())
+                        Player.posicao[0]++
+                }
+                else {
+                    Player.direcao[0] = 'none'
+                }
 
-            }
-            else {
-                Player.direcao[0] = 'none'
-            }
-
-            if (Input.w || Input.a || Input.s || Input.d) {
-                Player.atualizarPosicao()
+                if (Input.w || Input.a || Input.s || Input.d) {
+                    Player.atualizarPosicao()
+                }
+            } else {
+                clearInterval(intervalo)
             }
         }, 1);
     }
 
+    static parar() {
+        Player.movimentacao = false;
+    }
+
     static podeMovimentarX() {
-        var allowX = false;
         var level = Level.LevelArray[Game.level]
 
         var direcaoJogadorX = Player.direcao[0];
@@ -82,7 +94,7 @@ class Player {
     }
 
     static podeMovimentarY() {
-        var allowY = false;
+
         var level = Level.LevelArray[Game.level]
 
         var posicaoJogadorX = Player.posicao[0];
@@ -112,7 +124,6 @@ class Player {
                 }
             }
         }
-        
     }
 
     static atualizarPosicao() {
