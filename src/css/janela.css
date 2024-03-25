@@ -37,9 +37,9 @@
 
 .player img{
     position: absolute;
-    width: 130px;
+    width: 105px;
     bottom: 0px;
-    left: -47px;
+    left: -38px;
     filter: drop-shadow(1px 2px 0 black) drop-shadow(-1px -1px 0 black);
 }
 
