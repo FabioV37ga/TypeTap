@@ -68,12 +68,12 @@ class Player {
         var posicaoJogadorX = Player.posicao[0];
         var posicaoJogadorY = Player.posicao[1];
 
-        for (let i = 0; i <= level.boundaries.length - 1; i++) {
+        for (let i = 0; i <= level.paths.length - 1; i++) {
 
-            var x1 = level.boundaries[i][0][0];
-            var y1 = level.boundaries[i][0][1];
-            var x2 = level.boundaries[i][1][0];
-            var y2 = level.boundaries[i][1][1];
+            var x1 = level.paths[i][0][0];
+            var y1 = level.paths[i][0][1];
+            var x2 = level.paths[i][1][0];
+            var y2 = level.paths[i][1][1];
 
             if (direcaoJogadorX == 'right') {
                 if (posicaoJogadorX + 1 <= x2 &&
@@ -102,12 +102,12 @@ class Player {
         var direcaoJogadorY = Player.direcao[1];
         var posicaoJogadorY = Player.posicao[1];
 
-        for (let i = 0; i <= level.boundaries.length - 1; i++) {
+        for (let i = 0; i <= level.paths.length - 1; i++) {
 
-            var x1 = level.boundaries[i][0][0];
-            var y1 = level.boundaries[i][0][1];
-            var x2 = level.boundaries[i][1][0];
-            var y2 = level.boundaries[i][1][1];
+            var x1 = level.paths[i][0][0];
+            var y1 = level.paths[i][0][1];
+            var x2 = level.paths[i][1][0];
+            var y2 = level.paths[i][1][1];
 
             if (direcaoJogadorY == 'up') {
                 if (posicaoJogadorY + 1 <= y2 &&

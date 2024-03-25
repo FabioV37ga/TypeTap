@@ -1,3 +1,8 @@
+*{
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
 #botao {
     position: absolute;
     z-index: 3;
@@ -6,10 +11,15 @@
 .janela {
     width: 1240px;
     height: 760px;
-    background: url(../assets/level_0.png);
+    background: url(../assets/level_0-1.png);
     margin: 5% auto;
     position: relative;
     overflow: hidden;
+}
+
+.level-overlay{
+    z-index: 10;
+    position: absolute;
 }
 
 .player {

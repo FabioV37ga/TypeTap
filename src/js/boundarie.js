@@ -38,6 +38,5 @@ class Boundarie {
         </div>
         `
         $(".janela").append(element)
-        console.log($(".square"))
     }
 }

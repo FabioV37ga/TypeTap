@@ -1,12 +1,12 @@
 class Level {
     static LevelArray = Level.LevelArray ? Level.LevelArray : [];
     id;
-    boundaries;
+    paths;
     interactions;
 
-    constructor(id, boundaries) {
+    constructor(id, paths) {
         this.id = id;
-        this.boundaries = boundaries;
+        this.paths = paths;
 
         this.listar()
     }
@@ -15,7 +15,7 @@ class Level {
         var objeto =
         {
             "id": this.id,
-            "boundaries": this.boundaries
+            "paths": this.paths
         };
 
         Level.LevelArray.push(objeto)
@@ -25,12 +25,13 @@ class Level {
 var inicio = new Level(0, [
     //A(x¹,y¹) , B(x²,y²)
     [[576, 0], [700, 750]],
-    [[700, 292], [1230, 430]],
+    [[700, 292], [1230, 410]],
+    [[1173, 410], [1230, 425]],
     [[720, 0], [1230, 286]],
     [[975, 285], [1060, 310]]
 ])
 
-for (let i = 0; i <= inicio.boundaries.length - 1; i++) {
-    var boundarie = new Boundarie(inicio.boundaries[i][0], inicio.boundaries[i][1], 'path')
+for (let i = 0; i <= inicio.paths.length - 1; i++) {
+    var boundarie = new Boundarie(inicio.paths[i][0], inicio.paths[i][1], 'path')
 }
 
