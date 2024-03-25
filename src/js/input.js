@@ -5,7 +5,8 @@ class Input {
     static d = false;
 
     static adicionar(type, func) {
-        document.querySelector("body").addEventListener(type, func);
+        window.addEventListener(type, func)
+
     }
 
     static bindMovimentacao() {
@@ -68,5 +69,20 @@ class Input {
                 (Input.d = false) :
                 null
         })
+
+
+        // Desabilita movimentação ao sair da janela do jogo
+        Input.adicionar('blur',
+            function () {
+                Input.reset();
+            })
+
+    }
+
+    static reset() {
+        this.w = false;
+        this.a = false;
+        this.s = false;
+        this.d = false;
     }
 }
