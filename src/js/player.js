@@ -17,7 +17,6 @@ class Player {
         Player.movimentacao = true;
         var intervalo = setInterval(() => {
             if (Player.movimentacao == true) {
-
                 // Eixo y
                 if (Input.w == true && Input.s == false) {
                     Player.direcao[1] = 'up'
