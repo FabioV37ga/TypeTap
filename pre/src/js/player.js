@@ -4,6 +4,7 @@ class Player {
     static posicao = [600, 0]
     static direcao = ['none', 'none']
     static movimentacao = false;
+    static currentBoundarie;
 
     static habilitarMovimentacao() {
         Player.mover();
@@ -49,6 +50,7 @@ class Player {
 
                 if (Input.w || Input.a || Input.s || Input.d) {
                     Player.atualizarPosicao()
+                    console.log(Player.currentBoundarie)
                 }
 
             } else {
@@ -62,6 +64,7 @@ class Player {
     }
 
     static podeMovimentarX() {
+        var allowX = false
         var level = Level.LevelArray[Game.level]
 
         var direcaoJogadorX = Player.direcao[0];
@@ -76,22 +79,27 @@ class Player {
             var y2 = level.paths[i][1][1];
 
             if (direcaoJogadorX == 'right') {
-                if (posicaoJogadorX + 1 <= x2 &&
-                    posicaoJogadorX >= x1 &&
-                    posicaoJogadorY >= y1 &&
-                    posicaoJogadorY <= y2) {
-                    return true
+                if (posicaoJogadorX + 1 <= x2 - 10 &&
+                    posicaoJogadorX + 1 >= x1 - 10 &&
+                    posicaoJogadorY > y1 - 5 &&
+                    posicaoJogadorY < y2 - 5) {
+                    Player.currentBoundarie = Boundarie.boundarieArray[i].id
+                    if (posicaoJogadorY + 10 <= Boundarie.boundarieArray[Player.currentBoundarie].b[1])
+                        return true
                 }
             }
             else if (direcaoJogadorX == 'left') {
-                if (posicaoJogadorX - 1 >= x1 &&
-                    posicaoJogadorX <= x2 &&
+                if (posicaoJogadorX - 1 >= x1 - 10 &&
+                    posicaoJogadorX - 1 <= x2 - 10 &&
                     posicaoJogadorY >= y1 &&
                     posicaoJogadorY <= y2) {
-                    return true
+                    Player.currentBoundarie = Boundarie.boundarieArray[i].id
+                    if (posicaoJogadorY + 10 <= Boundarie.boundarieArray[Player.currentBoundarie].b[1])
+                        return true
                 }
             }
         }
+        // return allowX
     }
 
     static podeMovimentarY() {
@@ -110,10 +118,11 @@ class Player {
             var y2 = level.paths[i][1][1];
 
             if (direcaoJogadorY == 'up') {
-                if (posicaoJogadorY + 1 <= y2 &&
-                    posicaoJogadorY >= y1 &&
+                if (posicaoJogadorY + 1 <= y2 - 10 &&
+                    posicaoJogadorY >= y1 - 10 &&
                     posicaoJogadorX >= x1 &&
                     posicaoJogadorX <= x2) {
+                    Player.currentBoundarie = Boundarie.boundarieArray[i].id
                     return true
                 }
             } else if (direcaoJogadorY == 'down') {
@@ -121,6 +130,7 @@ class Player {
                     posicaoJogadorY <= y2 &&
                     posicaoJogadorX >= x1 &&
                     posicaoJogadorX <= x2) {
+                    Player.currentBoundarie = Boundarie.boundarieArray[i].id
                     return true
                 }
             }

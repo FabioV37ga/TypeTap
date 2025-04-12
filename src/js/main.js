@@ -1,2 +1,2 @@
-Input.bindMovimentacao();
-Player.habilitarMovimentacao();
+Game.buttonPress()
+Game.startGame()

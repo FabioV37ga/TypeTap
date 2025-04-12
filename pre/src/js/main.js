@@ -1,0 +1,2 @@
+Input.bindMovimentacao();
+Player.habilitarMovimentacao();
