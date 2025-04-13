@@ -85,6 +85,10 @@ class Keys {
                 clearInterval(intervalo)
             }
 
+            if (Game.playing == false){
+                clearInterval(intervalo)
+            }
+
         }, 1);
         this.elemento
     }

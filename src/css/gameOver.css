@@ -1,0 +1,90 @@
+.gameOver {
+    height: 165px;
+    color: var(--green);
+    display: none;
+    justify-content: center;
+    /* align-items: center; */
+    flex-wrap: wrap;
+    animation: gameOver .5s ease
+}
+
+@keyframes gameOver{
+    0%{
+        transform: translateY(50px);
+        opacity: 0%;
+    }
+    100%{
+        transform: translateY(0px);
+        opacity: 100%;
+    }
+}
+
+.fadeOut{
+    animation: fadeOut .5s ease forwards
+}
+
+@keyframes fadeOut{
+    0%{
+        opacity: 100%
+    }
+    100%{
+        opacity: 0%;
+    }
+}
+
+.gameOver-title,
+.gameOver-playAgain,
+.gameOver-home,
+.gameOver-score {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameOver-score{
+    font-size: 20px;
+    margin-top: -5px;
+    margin-bottom: 20px;
+}
+
+.gameOver-title {
+    margin: 0;
+    font-size: 80px;
+}
+
+.gameOver-playAgain {
+    margin-bottom: 10px;
+    cursor: pointer;
+    clip-path: polygon(0px calc(100% - 4px),
+            4px calc(100% - 4px),
+            4px 100%,
+            calc(100% - 4px) 100%,
+            calc(100% - 4px) calc(100% - 4px),
+            100% calc(100% - 4px),
+            100% 4px,
+            calc(100% - 4px) 4px,
+            calc(100% - 4px) 0px,
+            4px 0px,
+            4px 4px,
+            0px 4px);
+    width: fit-content;
+    padding: 10px 15px;
+    background: var(--green);
+    color: black
+}
+
+.gameOver .break {
+    flex-basis: 100%;
+    height: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.gameOver-home {
+    cursor: pointer;
+    width: fit-content;
+    padding-bottom: 1px;
+    border-bottom: 1px dashed var(--green)
+}

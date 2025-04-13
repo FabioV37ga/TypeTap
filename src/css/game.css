@@ -23,9 +23,6 @@
 
 .keySpawner {
     position: relative;
-    -webkit-box-shadow: inset 0px 0px 0px 1px black;
-    -moz-box-shadow: inset 0px 0px 0px 1px black;
-    box-shadow: inset 0px 0px 0px 1px black;
     width: 30px;
     height: 30px;
     display: flex;
@@ -42,8 +39,6 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    border: 1px solid black;
-    border-radius: 100%;
     font-size: 30px
 }
 
@@ -57,9 +52,11 @@
 .dotA {
     animation: rise .5s infinite linear;
 }
+
 .dotB {
     animation: rise .75s infinite linear;
 }
+
 .dotC {
     animation: rise 1s infinite linear;
 }
@@ -69,17 +66,79 @@
         transform: translateY(-0px);
         opacity: 100%;
     }
-    33%{
+
+    33% {
         transform: translateY(-20px);
         opacity: 75%;
     }
-    66%{
+
+    66% {
         transform: translateY(-40px);
         opacity: 50%;
     }
-    100%{
+
+    100% {
         transform: translateY(-60px);
         opacity: 0%;
     }
-    
+
+}
+
+.fallRight {
+    animation: .8s fallRight forwards linear
+}
+
+@keyframes fallRight {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    15% {
+        transform: translate(15px, -60px);
+        /* sobe e vai pro lado */
+    }
+
+    20% {
+        transform: translate(30px, -100px);
+        /* ponto mais alto */
+    }
+
+    25% {
+        transform: translate(40px, -60px);
+        /* descendo */
+    }
+
+    100% {
+        transform: translate(60px, 1024px);
+        /* toca o chão */
+    }
+}
+.fallLeft {
+    animation: .8s fallLeft forwards ease-in
+}
+
+@keyframes fallLeft {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    15% {
+        transform: translate(-15px, -60px);
+        /* sobe e vai pro lado */
+    }
+
+    20% {
+        transform: translate(-30px, -100px);
+        /* ponto mais alto */
+    }
+
+    25% {
+        transform: translate(-40px, -60px);
+        /* descendo */
+    }
+
+    100% {
+        transform: translate(-60px, 1024px);
+        /* toca o chão */
+    }
 }
