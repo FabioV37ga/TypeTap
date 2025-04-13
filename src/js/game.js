@@ -45,7 +45,8 @@ class Game {
 
             if (difficultyIndex >= 1200) {
                 // spawnCooldown = 0
-                Game.initialDelay > 100 ? Game.initialDelay -= 25 : Game.initialDelay -= 5
+                if (Game.initialDelay > 65)
+                    Game.initialDelay > 100 ? Game.initialDelay -= 25 : Game.initialDelay -= 5
                 console.log("lowering cooldown to " + Game.initialDelay)
                 difficultyIndex = 0;
             }
