@@ -63,6 +63,15 @@ class Game {
     }
 
     static over() {
+        document.querySelector(".gameOver-score").textContent = `score: ${String(Game.score).padStart(2, '0')}`
+        if (localStorage.getItem("TT-score")){
+            if (Game.score > localStorage.getItem("TT-score")){
+                localStorage.setItem("TT-score", Game.score)
+            }
+        }else{
+            localStorage.setItem("TT-score", Game.score)
+        }
+
         Game.playing = false
         var keys = this.getAliveKeys()
         for (let i = 0; i <= keys.length - 1; i++) {

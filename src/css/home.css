@@ -8,18 +8,19 @@
     animation: homeAppear .75s ease
 }
 
-@keyframes homeAppear{
-    0%{
+@keyframes homeAppear {
+    0% {
         opacity: 0%;
         transform: translateY(30px);
     }
-    100%{
+
+    100% {
         opacity: 100%;
         transform: translateY(0px);
     }
 }
 
-.home .break{
+.home .break {
     margin-top: -10px
 }
 
@@ -39,8 +40,9 @@
     margin: 0px
 }
 
-.home-score{
-    margin-top: -15px;
+.home-score {
+    margin-top: -8px;
+    font-size: 22px;
 }
 
 .home-startGame {
@@ -63,4 +65,12 @@
             4px 4px,
             0px 4px);
     width: 50px;
+}
+
+.home-git{
+    color: var(--green)
+}
+
+.home-git img{
+    width: 32px;
 }
