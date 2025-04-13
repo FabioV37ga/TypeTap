@@ -152,12 +152,21 @@ class Game {
         switch (sound) {
             case "score":
                 Game.scoreSound.play()
+                if (Game.scoreSound.currentTime > 0) {
+                    Game.scoreSound.currentTime = 0
+                }
                 break;
             case "hurt":
                 Game.hurtSound.play()
+                if (Game.hurtSound.currentTime > 0) {
+                    Game.hurtSound.currentTime = 0
+                }
                 break;
             case "gameover":
                 Game.overSound.play()
+                if (Game.overSound.currentTime > 0) {
+                    Game.overSound.currentTime = 0
+                }
                 break;
         }
     }
