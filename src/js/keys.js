@@ -72,12 +72,12 @@ class Keys {
             this.yCoord += this.speed;
             this.elemento.style.top = `${this.yCoord}px`;
 
-            if (this.yCoord >= 720)
+            if (this.yCoord >= Game.ySize)
                 Game.over()
 
             // console.log(this.yCoord)
             if (this.isAlive == true) {
-                if (this.yCoord >= 720)
+                if (this.yCoord >= Game.ySize)
                     // Game.over()
                     clearInterval(intervalo)
             } else {
@@ -115,11 +115,15 @@ class Keys {
             if (keys[i].getAttribute('value') == lowestDuplicate[0])
                 target = keys[i]
         }
-        target.remove()
+        if (target) {
+            Game.score++
+            console.log(Game.score)
+            target.remove()
 
-        var index = Game.aliveKeys.indexOf(target)
-        Game.aliveKeys.splice(index, 1)
-        Game.aliveKeyObjects[index].isAlive = false
-        Game.aliveKeyObjects.splice(index, 1)
+            var index = Game.aliveKeys.indexOf(target)
+            Game.aliveKeys.splice(index, 1)
+            Game.aliveKeyObjects[index].isAlive = false
+            Game.aliveKeyObjects.splice(index, 1)
+        }
     }
 }

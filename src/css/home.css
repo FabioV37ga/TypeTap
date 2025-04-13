@@ -1,3 +1,49 @@
-.home{
-    color: var(--green)
+.home {
+    height: 260px;
+    color: var(--green);
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-wrap: wrap;
+}
+
+.home-title,
+.home-score,
+.home-startGame {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-title {
+    font-size: 100px;
+    margin: 0px
+}
+
+.home-score{
+    margin-top: -25px;
+}
+
+.home-startGame {
+    cursor: pointer;
+    user-select: none;
+    font-size: 21px;
+    background: var(--green);
+    padding: 10px 15px;
+    color: black;
+    clip-path: polygon(0px calc(100% - 4px),
+            4px calc(100% - 4px),
+            4px 100%,
+            calc(100% - 4px) 100%,
+            calc(100% - 4px) calc(100% - 4px),
+            100% calc(100% - 4px),
+            100% 4px,
+            calc(100% - 4px) 4px,
+            calc(100% - 4px) 0px,
+            4px 0px,
+            4px 4px,
+            0px 4px);
+    width: 50px;
 }

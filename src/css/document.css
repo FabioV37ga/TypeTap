@@ -1,6 +1,6 @@
 body{
     margin: 0;
-    background: black;
+    background: rgb(23, 24, 25);
     display: flex;
     justify-content: center;
 }
