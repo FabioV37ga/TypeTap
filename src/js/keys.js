@@ -85,7 +85,7 @@ class Keys {
                 clearInterval(intervalo)
             }
 
-            if (Game.playing == false){
+            if (Game.playing == false) {
                 clearInterval(intervalo)
             }
 
@@ -128,6 +128,14 @@ class Keys {
             Game.aliveKeys.splice(index, 1)
             Game.aliveKeyObjects[index].isAlive = false
             Game.aliveKeyObjects.splice(index, 1)
+        } else {
+            for (let i = 0; i <= Keys.keyArray.length - 1; i++) {
+                if (Keys.keyArray[i] == key) {
+                    console.log("tecla errada")
+                    Game.hurt()
+                    break
+                }
+            }
         }
     }
 }

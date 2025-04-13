@@ -7,16 +7,28 @@ class Game {
     static initialDelay;
     static hasChangedInterval = false;
     static score = 0;
+    static lives;
 
     static startGame() {
+        Game.lives = 3;
         Game.playing = true;
         Game.initialDelay = 600;
 
         // Habilita clicks nas teclas
-        document.querySelector("body").addEventListener("keydown", function (e) {
-            if (Game.playing == true)
-                Keys.pop(e.key)
-        })
+        var body = document.querySelector("body")
+        if (!body.classList.contains("hasClickEvent"))
+            body.addEventListener("keydown", function (e) {
+                if (Game.playing == true)
+                    Keys.pop(e.key.toLowerCase())
+            })
+        body.classList.add('hasClickEvent')
+
+        var coracoes = document.querySelectorAll('.heart')
+        for (let i = 0; i <= coracoes.length - 1; i++) {
+            coracoes[i].classList.remove("popHeart")
+        }
+
+        document.querySelector(".lives").style.display = 'flex'
 
         var difficultyIndex = 0;
         var spawnCooldown = 0
@@ -62,7 +74,7 @@ class Game {
             }
         }
         setTimeout(() => {
-            for (let i = 0; i <= keys.length - 1; i++){
+            for (let i = 0; i <= keys.length - 1; i++) {
                 keys[i].remove()
             }
         }, 801);
@@ -84,5 +96,23 @@ class Game {
         setTimeout(() => {
             document.querySelector('.gameOver').style.display = 'flex'
         }, 750);
+
+        var coracoes = document.querySelectorAll('.heart')
+        for (let i = 0; i <= coracoes.length - 1; i++) {
+            if (!coracoes[i].classList.contains("popHeart")) {
+                coracoes[i].classList.add("popHeart")
+            }
+        }
+    }
+
+    static hurt() {
+        Game.lives--
+        console.log(document.querySelectorAll(".heart")[Game.lives])
+        document.querySelectorAll(".heart")[Game.lives].classList.add('popHeart')
+
+        if (Game.lives == 0) {
+            Game.over()
+        }
+        console.log(Game.lives)
     }
 }
