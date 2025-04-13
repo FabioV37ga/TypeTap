@@ -19,6 +19,11 @@
     }
 }
 
+.home .break{
+    margin-top: -10px
+}
+
+
 .home-title,
 .home-score,
 .home-startGame {
@@ -35,7 +40,7 @@
 }
 
 .home-score{
-    margin-top: -25px;
+    margin-top: -15px;
 }
 
 .home-startGame {
