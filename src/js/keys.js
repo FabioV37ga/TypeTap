@@ -40,7 +40,12 @@ class Keys {
         // console.log(`Key spawned at ${this.spawner} (${this.spawner + 1}º)`)
 
         // Elemento com informações da key
-        var elemento = `<div class="key" value="${this.id}">${this.key}</div>`
+        var elemento = `<div class="key" value="${this.id}" key="${this.key}">
+        ${this.key}
+        <div class="dotA">.</div>
+        <div class="dotB">.</div>
+        <div class="dotC">.</div>
+        </div>`
         // Cria elemento
         $(".keySpawner").eq(this.spawner).append(elemento)
 
@@ -91,14 +96,14 @@ class Keys {
 
         for (let i = 0; i <= keys.length - 1; i++) {
             // console.log(keys[i].textContent)
-            if (keys[i].textContent == key) {
+            if (keys[i].getAttribute("key") == key) {
                 duplicate.push(keys[i])
                 break;
             }
         }
 
         for (let i = 0; i <= keys.length - 1; i++) {
-            if (keys[i].textContent == key) {
+            if (keys[i].getAttribute("key") == key) {
                 duplicateIds.push(keys[i].getAttribute('value'))
             }
         }

@@ -13,7 +13,7 @@ class Game {
             } else {
                 clearInterval(intervalo)
             }
-        }, 600);
+        }, 1000);
     }
 
     static getAliveKeys() {
