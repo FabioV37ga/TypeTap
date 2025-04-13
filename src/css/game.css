@@ -191,20 +191,42 @@ img.heart {
     }
 }
 
-.popHeart{
+.popHeart {
     animation: popHeart .5s linear forwards !important;
 }
 
 @keyframes popHeart {
-    0%{
+    0% {
         transform: translateY(0px);
     }
-    50%{
+
+    50% {
         transform: translateY(-10px);
         opacity: 100%;
     }
-    100%{
+
+    100% {
         transform: translateY(10px);
         opacity: 0%;
     }
+}
+
+.score-container {
+    opacity: 0;
+    width: 100%;
+    position: absolute;
+    height: 50px;
+    top: 55px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation: heartShow .5s linear forwards;
+    animation-delay: 0.6s;
+}
+
+.score-container .score {
+    /* display: none; */
+    color: var(--green);
+    font-size: 25px;
+    
 }

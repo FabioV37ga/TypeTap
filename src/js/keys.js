@@ -120,8 +120,7 @@ class Keys {
                 target = keys[i]
         }
         if (target) {
-            Game.score++
-            console.log(Game.score)
+            Game.addScore()
             target.remove()
 
             var index = Game.aliveKeys.indexOf(target)

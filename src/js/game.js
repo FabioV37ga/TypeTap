@@ -9,7 +9,16 @@ class Game {
     static score = 0;
     static lives;
 
+    static scoreSound = new Audio('src/sound/score.mp3')
+    static hurtSound = new Audio('src/sound/hurt.mp3')
+    static overSound = new Audio('src/sound/gameover.mp3')
+
     static startGame() {
+        Game.scoreSound.volume = 0.3
+        Game.hurtSound.volume = 0.3
+        Game.overSound.volume = 0.3
+
+        Game.scoreSound.play()
         Game.lives = 3;
         Game.playing = true;
         Game.initialDelay = 600;
@@ -23,10 +32,13 @@ class Game {
             })
         body.classList.add('hasClickEvent')
 
-        var coracoes = document.querySelectorAll('.heart')
-        for (let i = 0; i <= coracoes.length - 1; i++) {
-            coracoes[i].classList.remove("popHeart")
+        var elementosInfo = document.querySelectorAll('.popHeart')
+        for (let i = 0; i <= elementosInfo.length - 1; i++) {
+            elementosInfo[i].classList.remove("popHeart")
         }
+
+        var score = document.querySelector(".score-container")
+        score.style.display = 'flex'
 
         document.querySelector(".lives").style.display = 'flex'
 
@@ -63,12 +75,13 @@ class Game {
     }
 
     static over() {
+        Game.playSound("gameover")
         document.querySelector(".gameOver-score").textContent = `score: ${String(Game.score).padStart(2, '0')}`
-        if (localStorage.getItem("TT-score")){
-            if (Game.score > localStorage.getItem("TT-score")){
+        if (localStorage.getItem("TT-score")) {
+            if (Game.score > localStorage.getItem("TT-score")) {
                 localStorage.setItem("TT-score", Game.score)
             }
-        }else{
+        } else {
             localStorage.setItem("TT-score", Game.score)
         }
 
@@ -113,10 +126,13 @@ class Game {
                 coracoes[i].classList.add("popHeart")
             }
         }
+
+        var score = document.querySelector(".score-container").classList.add("popHeart")
     }
 
     static hurt() {
         Game.lives--
+        Game.playSound("hurt")
         console.log(document.querySelectorAll(".heart")[Game.lives])
         document.querySelectorAll(".heart")[Game.lives].classList.add('popHeart')
 
@@ -124,5 +140,25 @@ class Game {
             Game.over()
         }
         console.log(Game.lives)
+    }
+
+    static addScore() {
+        Game.score++
+        Game.playSound("score")
+        var score = document.querySelector(".score-container .score").textContent = String(Game.score).padStart(2, '0')
+    }
+
+    static playSound(sound) {
+        switch (sound) {
+            case "score":
+                Game.scoreSound.play()
+                break;
+            case "hurt":
+                Game.hurtSound.play()
+                break;
+            case "gameover":
+                Game.overSound.play()
+                break;
+        }
     }
 }
