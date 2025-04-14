@@ -4,29 +4,23 @@ class Game {
     static aliveKeys = []
     static playing;
     static initialDelay;
-    static hasChangedInterval = false;
     static score = 0;
     static lives;
 
-    static scoreSound = new Audio('src/sound/score.mp3')
-    static hurtSound = new Audio('src/sound/hurt.mp3')
-    static overSound = new Audio('src/sound/gameover.mp3')
+    static scoreSound = Object.assign(new Audio('src/sound/score.mp3'), { volume: 0.3 });
+    static hurtSound = Object.assign(new Audio('src/sound/hurt.mp3'), { volume: 0.3 });
+    static overSound = Object.assign(new Audio('src/sound/gameover.mp3'), { volume: 0.3 });
 
     // Método responsável por iniciar o jogo
     static startGame() {
         Game.playing = true;
-        
-        Game.scoreSound.volume = 0.3
-        Game.hurtSound.volume = 0.3
-        Game.overSound.volume = 0.3
+
         Game.scoreSound.play()
-        
+
         Game.score = 0;
         Game.lives = 3;
 
         document.querySelector(".score-container .score").textContent = '00'
-
-        Game.initialDelay = 600;
 
         // Habilita clicks nas teclas
         var body = document.querySelector("body")
@@ -44,6 +38,8 @@ class Game {
         }
 
         // Mostra o indicador de pontuação
+        Game.initialDelay = 600;
+
         var score = document.querySelector(".score-container")
         score.style.display = 'flex'
         document.querySelector(".lives").style.display = 'flex'
@@ -57,17 +53,15 @@ class Game {
             spawnCooldown++
 
             if (spawnCooldown >= Game.initialDelay) {
-                console.log("spawning")
                 var newKey = new Keys()
                 spawnCooldown = 0
             }
 
             if (difficultyIndex >= 1200) {
-                // spawnCooldown = 0
+                difficultyIndex = 0;
+
                 if (Game.initialDelay > 65)
                     Game.initialDelay > 100 ? Game.initialDelay -= 25 : Game.initialDelay -= 5
-                console.log("lowering cooldown to " + Game.initialDelay)
-                difficultyIndex = 0;
             }
 
             if (Game.playing == false) {
@@ -87,22 +81,28 @@ class Game {
 
         // Toca som de game over
         Game.playSound("gameover")
-        
+
         // Define o texto do score da rodada jogada
         document.querySelector(".gameOver-score").textContent = `score: ${String(Game.score).padStart(2, '0')}`
+
         if (localStorage.getItem("TT-score")) {
+
             if (Game.score > localStorage.getItem("TT-score")) {
+
                 localStorage.setItem("TT-score", Game.score)
             }
         } else {
+
             localStorage.setItem("TT-score", Game.score)
         }
 
         // Adiciona animação as keys restantes para remove-las da tela
         var keys = this.getAliveKeys()
+
         for (let i = 0; i <= keys.length - 1; i++) {
+
             var random = Math.floor(Math.random() * 100);
-            console.log(random)
+
             if (random % 2 == 0) {
                 keys[i].classList.add('fallRight')
             } else {
@@ -139,7 +139,9 @@ class Game {
 
         // Esconde os corações
         var coracoes = document.querySelectorAll('.heart')
+
         for (let i = 0; i <= coracoes.length - 1; i++) {
+
             if (!coracoes[i].classList.contains("popHeart")) {
                 coracoes[i].classList.add("popHeart")
             }
