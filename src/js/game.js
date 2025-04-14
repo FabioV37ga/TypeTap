@@ -1,6 +1,5 @@
 class Game {
     static ySize = 725
-    static aliveKeyElements = Game.getAliveKeys()
     static aliveKeyObjects = []
     static aliveKeys = []
     static playing;
@@ -14,6 +13,8 @@ class Game {
     static overSound = new Audio('src/sound/gameover.mp3')
 
     static startGame() {
+        Game.score = 0;
+
         Game.scoreSound.volume = 0.3
         Game.hurtSound.volume = 0.3
         Game.overSound.volume = 0.3
