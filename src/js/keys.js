@@ -33,7 +33,7 @@ class Keys {
         // Gera o caracter da key
         this.key = Keys.keyArray[Math.floor(Math.random() * 25)]
 
-        // Cria elemento relacionado a instância de keys
+        // Decide aleatoriamente em qual quadrante a Key vai surgir
         this.spawner = Math.floor(Math.random() * 33)
 
 
