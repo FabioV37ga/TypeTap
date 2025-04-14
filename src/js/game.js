@@ -12,16 +12,20 @@ class Game {
     static hurtSound = new Audio('src/sound/hurt.mp3')
     static overSound = new Audio('src/sound/gameover.mp3')
 
+    // Método responsável por iniciar o jogo
     static startGame() {
-        Game.score = 0;
-
+        Game.playing = true;
+        
         Game.scoreSound.volume = 0.3
         Game.hurtSound.volume = 0.3
         Game.overSound.volume = 0.3
-
         Game.scoreSound.play()
+        
+        Game.score = 0;
         Game.lives = 3;
-        Game.playing = true;
+
+        document.querySelector(".score-container .score").textContent = '00'
+
         Game.initialDelay = 600;
 
         // Habilita clicks nas teclas
@@ -33,22 +37,24 @@ class Game {
             })
         body.classList.add('hasClickEvent')
 
+        // Mostra os corações
         var elementosInfo = document.querySelectorAll('.popHeart')
         for (let i = 0; i <= elementosInfo.length - 1; i++) {
             elementosInfo[i].classList.remove("popHeart")
         }
 
+        // Mostra o indicador de pontuação
         var score = document.querySelector(".score-container")
         score.style.display = 'flex'
-
         document.querySelector(".lives").style.display = 'flex'
 
+        // Função responsável por aumentar a dificuldade do jogo conforme o tempo passa
         var difficultyIndex = 0;
         var spawnCooldown = 0
         var intervalo = setInterval(() => {
+
             difficultyIndex++
             spawnCooldown++
-            // console.log(spawnCooldown)
 
             if (spawnCooldown >= Game.initialDelay) {
                 console.log("spawning")
@@ -75,8 +81,14 @@ class Game {
         return document.querySelectorAll('.key')
     }
 
+    // Método responsável por finalizar o jogo
     static over() {
+        Game.playing = false
+
+        // Toca som de game over
         Game.playSound("gameover")
+        
+        // Define o texto do score da rodada jogada
         document.querySelector(".gameOver-score").textContent = `score: ${String(Game.score).padStart(2, '0')}`
         if (localStorage.getItem("TT-score")) {
             if (Game.score > localStorage.getItem("TT-score")) {
@@ -86,7 +98,7 @@ class Game {
             localStorage.setItem("TT-score", Game.score)
         }
 
-        Game.playing = false
+        // Adiciona animação as keys restantes para remove-las da tela
         var keys = this.getAliveKeys()
         for (let i = 0; i <= keys.length - 1; i++) {
             var random = Math.floor(Math.random() * 100);
@@ -97,12 +109,15 @@ class Game {
                 keys[i].classList.add('fallLeft')
             }
         }
+
+        // Remove os elementos das keys depois de 800ms
         setTimeout(() => {
             for (let i = 0; i <= keys.length - 1; i++) {
                 keys[i].remove()
             }
         }, 801);
 
+        // Pisca o background da cor branca, e volta para a cor preta
         var r = 255;
         var g = 255;
         var b = 255;
@@ -117,10 +132,12 @@ class Game {
             }
         }, 1);
 
+        // Mostra mensagem de game-over
         setTimeout(() => {
             document.querySelector('.gameOver').style.display = 'flex'
         }, 750);
 
+        // Esconde os corações
         var coracoes = document.querySelectorAll('.heart')
         for (let i = 0; i <= coracoes.length - 1; i++) {
             if (!coracoes[i].classList.contains("popHeart")) {
@@ -128,27 +145,34 @@ class Game {
             }
         }
 
+        // Esconde o indicador de pontuação
         var score = document.querySelector(".score-container").classList.add("popHeart")
     }
 
+    // Método responsável por perder 1 coração
     static hurt() {
         Game.lives--
+
+        // Toca som de hurt
         Game.playSound("hurt")
-        console.log(document.querySelectorAll(".heart")[Game.lives])
+
+        // Remove um coração
         document.querySelectorAll(".heart")[Game.lives].classList.add('popHeart')
 
+        // Se as vidas zerarem, finaliza a rodada
         if (Game.lives == 0) {
             Game.over()
         }
-        console.log(Game.lives)
     }
 
+    // Método responsável por pontuar
     static addScore() {
         Game.score++
         Game.playSound("score")
-        var score = document.querySelector(".score-container .score").textContent = String(Game.score).padStart(2, '0')
+        document.querySelector(".score-container .score").textContent = String(Game.score).padStart(2, '0')
     }
 
+    // Método responsável por tocar sons do jogo
     static playSound(sound) {
         switch (sound) {
             case "score":
